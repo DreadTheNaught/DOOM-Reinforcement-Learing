@@ -1,0 +1,8 @@
+{
+    "checkpoint_dir": "checkpoint/",
+    "log_dir": "logs/",
+    "image_shape": [60, 80],
+    "frame_skip": 4,
+    "reward_scaling": 0.01,
+    "training_timesteps": 1000
+}
