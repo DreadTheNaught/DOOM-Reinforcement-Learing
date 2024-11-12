@@ -4,5 +4,5 @@
     "image_shape": [60, 80],
     "frame_skip": 4,
     "reward_scaling": 0.01,
-    "training_timesteps": 1000
+    "training_timesteps": 50000
 }

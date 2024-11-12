@@ -9,7 +9,7 @@ class TrainAndLoggingCallback(BaseCallback):
         self.save_path = save_path
 
     def _init_callback(self):
-        if self.save_path:
+        if self.save_path is not None:
             os.makedirs(self.save_path, exist_ok=True)
 
     def _on_step(self):

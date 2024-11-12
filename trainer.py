@@ -1,12 +1,17 @@
 from stable_baselines3 import PPO
 from callback import TrainAndLoggingCallback
+import json
 
-def train_agent(env, log_dir, checkpoint_dir, timesteps=1000):
-    agent = PPO('CnnPolicy', env, tensorboard_log=log_dir, verbose=1,
-                learning_rate=0.0001, n_steps=256)
+with open('config.json', 'r') as config_file:
+    config = json.load(config_file)
+
+
+def train_agent(env, n_steps=2048):
+    agent = PPO('CnnPolicy', env, tensorboard_log=config['log_dir'], verbose=1,
+                learning_rate=0.0001, n_steps=n_steps)
 
     callback = TrainAndLoggingCallback(
-        check_freq=1000, save_path=checkpoint_dir)
+        check_freq=1000, save_path=config["checkpoint_dir"])
 
-    agent.learn(total_timesteps=timesteps, callback=callback)
+    agent.learn(total_timesteps=config["training_timesteps"], callback=callback, progress_bar=True)
     return agent
